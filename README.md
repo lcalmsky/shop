@@ -35,5 +35,5 @@
 
 ### References
 
-- [Spring Boot Guide][https://spring.io/guides]
+- [Spring Boot Guide](https://spring.io/guides)
 - [thymeleaf](https://thymeleaf.org)
