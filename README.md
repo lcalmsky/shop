@@ -39,7 +39,7 @@
   - 관계형 데이터베이스에서는 다대다 관계를 사용하지 않음
   - 주문상을 아우르는 도메인을 이용해 일대다, 다대일로 설계해야함
 
-![domain-diagram](https://raw.githubusercontent.com/lcalmsky/shop/master/diagram/domain-diagram.plantuml)
+![domain-diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/lcalmsky/shop/master/diagram/domain-diagram.plantuml)
 
 ### References
 
