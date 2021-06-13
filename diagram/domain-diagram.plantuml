@@ -1,0 +1,79 @@
+@startuml
+class Member {
+    +id: Long
+    +name: String
+    +address: Address
+    +orders: List
+}
+
+class Order {
+    +id: Long
+    +member: Member
+    +orderItems: List<OrderItem>
+    +delivery: Delivery
+    +orderDate: Date
+    +status: OrderStatus
+}
+
+class Delivery {
+    +id: Long
+    +order: Order
+    +address: Address
+    +status: DeliveryStatus
+}
+
+class OrderItem {
+    +id: Long
+    +item: item
+    +order: Order
+    +orderPrice: Integer
+    +count: Integer
+}
+
+class Category {
+    +id: Long
+    +name: String
+    +items: List<Item>
+    +parent: Category
+    +child: List<Category>
+}
+
+class Item {
+    +id: Long
+    +name: String
+    +price: Integer
+    +stockQuantity: Integer
+    +categories: List<Category>
+}
+
+class Album {
+    +artist: String
+    +etc: String
+}
+
+class Book {
+    +author: String
+    +isbn: String
+}
+
+class Movie {
+    +director: String
+    +actor: String
+}
+
+class Address <<value type>> {
+    +city: String
+    +street: String
+    +zipcode: String
+}
+
+Member "1..*" -down- Order
+Order "1..*" - OrderItem
+Order "1..1" -down- Delivery
+OrderItem "*..1" - Item
+Item "*..*" - Category
+Album --|> Item
+Movie --|> Item
+Book --|> Item
+
+@enduml
