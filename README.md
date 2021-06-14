@@ -72,6 +72,30 @@
     - 단순 예제용
   - 연관관계의 주인은 단순히 FK를 누가 관리하느냐로 정해져야 함
 
+
+### Entity 설계시 주의점
+
+- 가급적 `Setter`를 사용하지 않기
+  - 변경 포인트가 많아 유지보수가 어려워짐
+- 모든 연관관계는 지연로딩(`LAZY`)으로 설정
+  - `EAGER`는 예측이 어렵고 추적이 어려움
+  - fetch join 또는 graph 기능을 이용해야 함
+  - `OneToOne`, `ManyToOne` 관계는 기본이 EAGER 이므로 직접 `LAZY`로 바꿔줘야 함
+  - `OneToMany`는 기본이 `LAZY`
+- 컬렉션은 필드초기화 사용
+  - NPE 방지
+  - hibernate에서 persist시 자체 Collection으로 wrapping함
+- 테이블, 컬럼명 생성 전략
+  - 스프링 사용시: `SpringPhysicalNamingStrategy`
+    - camel -> underscore
+    - . -> underscore
+    - uppercase -> lowercase
+  - 논리명 생성: 명시적으로 적지 않으면 `ImplicitNamingStrategy` 사용
+    - spring.jpa.hibernate.naming.implicit-naming-strategy
+  - 물리명 적용: 모든 논리명에 적용됨, 실제 테이블에 적용
+    - spring.jpa.hibernate.naming.physical-strategy
+  
+
 ### References
 
 - [Spring Boot Guide](https://spring.io/guides)
