@@ -24,9 +24,14 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
     private List<Item> items = new ArrayList<>();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
     @OneToMany(mappedBy = "parent")
     private List<Category> children;
+
+    public void addChild(Category child) {
+        this.children.add(child);
+        child.setParent(this);
+    }
 }
