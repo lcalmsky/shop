@@ -48,6 +48,8 @@
   - single table 전략을 사용해 Item을 상속받은 객체들이 하나의 테이블을 공유, 성능에 이점
   - category - item을 아우르는 category item 테이블 필요
 
+![er-diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/lcalmsky/shop/master/diagram/er-diagram.png)
+
 - 연관관계 매핑 분석
   - 회원-주문
     - 일대다, 다대일의 양뱡향 관계
@@ -68,7 +70,7 @@
   - 카테고리와 상품
     - 다대다 관계
     - 단순 예제용
-  - 연관관계의 주인은 단순히 FK를 누가 관리하느냐로 정해져야 함 
+  - 연관관계의 주인은 단순히 FK를 누가 관리하느냐로 정해져야 함
 
 ### References
 
