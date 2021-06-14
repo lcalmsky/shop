@@ -48,7 +48,7 @@
   - single table 전략을 사용해 Item을 상속받은 객체들이 하나의 테이블을 공유, 성능에 이점
   - category - item을 아우르는 category item 테이블 필요
 
-![er-diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/lcalmsky/shop/master/diagram/er-diagram.png)
+![er-diagram](https://raw.githubusercontent.com/lcalmsky/shop/master/diagram/er-diagram.png)
 
 - 연관관계 매핑 분석
   - 회원-주문
