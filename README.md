@@ -94,7 +94,15 @@
     - spring.jpa.hibernate.naming.implicit-naming-strategy
   - 물리명 적용: 모든 논리명에 적용됨, 실제 테이블에 적용
     - spring.jpa.hibernate.naming.physical-strategy
-  
+
+### Service-Entity 관련 패턴
+
+- 도메인 모델 패턴: Entity가 비즈니스 로직을 가지고 객체 지향의 특성을 적극 활용하는 것
+- 트랜잭션 스크립트 패턴: Entity에는 비즈니스 로직이 거의 없고 Service Layer에서 대부분의 비즈니스 로직을 처리하는 것
+
+> ❗이 프로젝트에서는 **도메인 모델 패턴**을 사용
+> `JPA`과 같은 `ORM`을 사용할 경우 도메인 모델 패턴을 사용하는 게 더 유리함
+> 문맥에 맞게 유연하게 패턴 적용 필요
 
 ### References
 
