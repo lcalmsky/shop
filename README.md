@@ -104,6 +104,20 @@
 > `JPA`과 같은 `ORM`을 사용할 경우 도메인 모델 패턴을 사용하는 게 더 유리함<br>
 > 문맥에 맞게 유연하게 패턴 적용 필요
 
+### 변경 감지(Dirty Checking)와 병합(Merge)
+
+> *준영속 Entity*<br>
+> 영속성 컨텍스트가 더 이상 관리하지 않는 Entity<br>
+> 임의로 만든 Entity도 식별자를 가지고 있으면 준영속 Entity에 해당
+
+- 준영속 Entity를 수정하는 두 가지 방법
+  - Dirty Checking
+    - 원하는 속성만 변경할 수 있음
+  - Merge
+    - merge로 넘긴 파라미터는 영속성 컨텍스트가 되지 않고 merge의 반환 값은 영속성 컨텍스트가 됨
+    - 전체 속성을 변경하기 때문에 필드가 비어있으면 null로 업데이트 됨
+  
+
 ### References
 
 - [Spring Boot Guide](https://spring.io/guides)
