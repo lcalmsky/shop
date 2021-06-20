@@ -8,6 +8,7 @@ import io.lcalmsky.shop.service.ItemService;
 import io.lcalmsky.shop.service.MemberService;
 import io.lcalmsky.shop.service.OrderSearch;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,8 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class OlderController {
+@Slf4j
+public class OrderController {
     private final OrderService orderService;
     private final MemberService memberService;
     private final ItemService itemService;
@@ -39,6 +41,7 @@ public class OlderController {
     @GetMapping("/orders")
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
+        log.info("{}", orders);
         model.addAttribute("orders", orders);
         return "/order/orderList";
     }
