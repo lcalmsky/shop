@@ -40,7 +40,7 @@ public class OrderService {
         order.cancel();
     }
 
-    public List<Order> findOrder(OrderSearch orderSearch) {
+    public List<Order> findOrders(OrderSearch orderSearch) {
         return orderRepository.findAll(orderSearch);
     }
 }
