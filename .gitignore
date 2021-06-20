@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 shop.mv.db
+/shop.lock.db
 
 ### STS ###
 .apt_generated
