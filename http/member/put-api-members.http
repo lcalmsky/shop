@@ -1,0 +1,6 @@
+PUT localhost:8080/api/v2/members/1
+Content-Type: application/json;charset=UTF-8
+
+{
+  "name": "이순신"
+}
