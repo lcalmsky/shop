@@ -79,4 +79,16 @@ public class OrderRepository {
         TypedQuery<Order> query = entityManager.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
     }
+
+    public List<Order> findAllWithMemberDelivery() {
+        return entityManager.createQuery("select o from Order o " +
+                "join fetch o.member m " +
+                "join fetch o.delivery d", Order.class).getResultList();
+    }
+
+    public List<SimpleOrderDto> findOrderDtoList() {
+        return entityManager.createQuery("select new io.lcalmsky.shop.repository.SimpleOrderDto(o.id, o.member.name, o.orderDate, o.status, o.delivery.address) from Order o " +
+                "join o.member m " +
+                "join o.delivery d ", SimpleOrderDto.class).getResultList();
+    }
 }
