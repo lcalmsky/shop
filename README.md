@@ -116,7 +116,20 @@
   - Merge
     - merge로 넘긴 파라미터는 영속성 컨텍스트가 되지 않고 merge의 반환 값은 영속성 컨텍스트가 됨
     - 전체 속성을 변경하기 때문에 필드가 비어있으면 null로 업데이트 됨
-  
+
+### Fetch Join 최적화
+
+- join 관계에 있는 테이블들에 대해 SQL 수행을 한 번으로 줄여줌
+  - OneToMany, ManyToMany
+- distinct
+  - DB에서 distinct 처리
+  - ID가 동일한 중복 데이터 제거
+- 페이징이 불가능함
+  - 1:N, N:N join이 있을 경우
+  - limit 등을 사용하지 않고 전체를 가져온 뒤 메모리에서 페이징 처리
+- Collection fetch join은 한 개만 사용 가능
+  - 둘 이상에 사용하면 데이터가 부정합하게 조회될 수 있음
+
 
 ### References
 
