@@ -1,4 +1,4 @@
-package io.lcalmsky.shop.repository;
+package io.lcalmsky.shop.repository.order.query;
 
 import io.lcalmsky.shop.domain.Address;
 import io.lcalmsky.shop.domain.Order;
@@ -8,14 +8,14 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class SimpleOrderDto {
+public class OrderQueryDto {
     private Long orderId;
     private String name;
     private LocalDateTime orderDate;
     private OrderStatus orderStatus;
     private Address address;
 
-    public SimpleOrderDto(Order order) {
+    public OrderQueryDto(Order order) {
         this.orderId = order.getId();
         this.name = order.getMember().getName();
         this.orderDate = order.getOrderDate();
@@ -23,7 +23,7 @@ public class SimpleOrderDto {
         this.address = order.getDelivery().getAddress();
     }
 
-    public SimpleOrderDto(Long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address) {
+    public OrderQueryDto(Long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address) {
         this.orderId = orderId;
         this.name = name;
         this.orderDate = orderDate;

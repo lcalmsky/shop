@@ -2,6 +2,7 @@ package io.lcalmsky.shop.repository;
 
 import io.lcalmsky.shop.domain.Member;
 import io.lcalmsky.shop.domain.Order;
+import io.lcalmsky.shop.repository.order.query.OrderQueryRepository;
 import io.lcalmsky.shop.service.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -84,11 +85,5 @@ public class OrderRepository {
         return entityManager.createQuery("select o from Order o " +
                 "join fetch o.member m " +
                 "join fetch o.delivery d", Order.class).getResultList();
-    }
-
-    public List<SimpleOrderDto> findOrderDtoList() {
-        return entityManager.createQuery("select new io.lcalmsky.shop.repository.SimpleOrderDto(o.id, o.member.name, o.orderDate, o.status, o.delivery.address) from Order o " +
-                "join o.member m " +
-                "join o.delivery d ", SimpleOrderDto.class).getResultList();
     }
 }
