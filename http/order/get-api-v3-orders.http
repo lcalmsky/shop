@@ -1,1 +1,1 @@
-GET localhost:8080/api/v3/simple-orders
+GET localhost:8080/api/v3/orders
