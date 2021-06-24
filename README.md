@@ -116,7 +116,46 @@
   - Merge
     - merge로 넘긴 파라미터는 영속성 컨텍스트가 되지 않고 merge의 반환 값은 영속성 컨텍스트가 됨
     - 전체 속성을 변경하기 때문에 필드가 비어있으면 null로 업데이트 됨
+
+### Fetch Join 최적화
+
+- join 관계에 있는 테이블들에 대해 SQL 수행을 한 번으로 줄여줌
+  - `OneToMany`, `ManyToMany`
+- `distinct`
+  - DB에서 distinct 처리
+  - ID가 동일한 중복 데이터 제거
+- 페이징이 불가능함
+  - 1:N, N:N join이 있을 경우
+  - limit 등을 사용하지 않고 전체를 가져온 뒤 메모리에서 페이징 처리
+- Collection fetch join은 한 개만 사용 가능
+  - 둘 이상에 사용하면 데이터가 부정합하게 조회될 수 있음
+
+### Fetch Join with Paging
+
+- 1:N에서 1을 기준으로 페이징하기 위함
+  - 데이터는 N을 기준으로 생성
+- XToOne 관계는 모두 `Fetch Join` 사용
+- `Collection`은 Lazy Loading
+- Lazy Loading 최적화
+  - `spring.jpa.properties.hibernate.default_batch_fetch_size`: 글로벌 설정
+  - `@BatchSize` 개별 최적화
+    - ToOne 관계에 해당하는 경우 클래스에 애너테이션 추가
+    - ToMany 관계에 해당하는 경우 필드에 애너테이션 추가
+  - 이 옵션을 사용하면 `Collection`이나 `Proxy` 객체를 `IN`을 이용해 쿼리
   
+### Fetch Join, Batch Summary
+
+- ToOne 관계는 Fetch Join 사용
+- ToMany 관계는 지연로딩 설정 후 batch 옵션 사용
+- 위 같이 설정하면 쿼리 효율이 1 + N -> 1 + 1 로 최적화
+- Join을 사용하는 것보다 DB 데이터 전송량이 최적화됨
+  - 데이터 양이 많을 때 유리(Transaction 수는 많이 줄지 않지만 데이터량이 많이 감소)
+- 페이징 가능
+
+> spring.jpa.properties.hibernate.default_batch_fetch_size 사이즈는 100~1000이 적당하다. <br>
+> IN 절 내에 포함되는 파라미터와 조회 후 반환받은 데이터량을 메모리 설정 등과 비교 및 고려하여 적당한 숫자로 설정해야 한다.
+
+
 
 ### References
 
