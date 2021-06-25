@@ -1,7 +1,7 @@
 package io.lcalmsky.shop.service;
 
 import io.lcalmsky.shop.domain.Member;
-import io.lcalmsky.shop.repository.MemberRepository;
+import io.lcalmsky.shop.repository.MemberRepositoryOld;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ class MemberServiceTest {
     @Autowired
     MemberService memberService;
     @Autowired
-    MemberRepository memberRepository;
+    MemberRepositoryOld memberRepository;
 
     @Test
     public void 회원가입() {

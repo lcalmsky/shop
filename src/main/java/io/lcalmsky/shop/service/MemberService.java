@@ -31,12 +31,11 @@ public class MemberService {
     }
 
     public Member findMember(Long id) {
-        return memberRepository.findOne(id);
+        return memberRepository.findById(id).orElse(null);
     }
 
     @Transactional
     public void update(Long memberId, String name) {
-        Member one = memberRepository.findOne(memberId);
-        one.setName(name);
+        memberRepository.findById(memberId).ifPresent(m -> m.setName(name));
     }
 }

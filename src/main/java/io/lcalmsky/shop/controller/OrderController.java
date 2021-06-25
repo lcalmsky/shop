@@ -3,7 +3,7 @@ package io.lcalmsky.shop.controller;
 import io.lcalmsky.shop.domain.Member;
 import io.lcalmsky.shop.domain.Order;
 import io.lcalmsky.shop.domain.item.Item;
-import io.lcalmsky.shop.repository.OrderService;
+import io.lcalmsky.shop.service.OrderService;
 import io.lcalmsky.shop.service.ItemService;
 import io.lcalmsky.shop.service.MemberService;
 import io.lcalmsky.shop.service.OrderSearch;
