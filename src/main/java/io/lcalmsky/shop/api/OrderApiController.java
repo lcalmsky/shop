@@ -26,7 +26,7 @@ public class OrderApiController {
 
     @GetMapping("/api/v2/orders")
     public List<OrderDto> ordersV2() {
-        List<Order> orders = orderRepository.findAllByString(new OrderSearch());
+        List<Order> orders = orderRepository.findAllWithQueryDsl(new OrderSearch());
         return orders.stream()
                 .map(OrderDto::new)
                 .collect(Collectors.toList());
