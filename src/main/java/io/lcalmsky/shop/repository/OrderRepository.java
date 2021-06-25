@@ -1,8 +1,9 @@
 package io.lcalmsky.shop.repository;
 
-import io.lcalmsky.shop.domain.Member;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import io.lcalmsky.shop.domain.Order;
-import io.lcalmsky.shop.repository.order.query.OrderItemQueryDto;
+import io.lcalmsky.shop.domain.*;
 import io.lcalmsky.shop.service.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -104,5 +106,30 @@ public class OrderRepository {
                         "join fetch o.orderItems oi " +
                         "join fetch oi.item i", Order.class)
                 .getResultList();
+    }
+
+    public List<Order> findAllWithQueryDsl(OrderSearch orderSearch) {
+        QOrder order = QOrder.order;
+        QMember member = QMember.member;
+        JPAQueryFactory query = new JPAQueryFactory(entityManager);
+        return query.select(order)
+                .from(order)
+                .join(order.member, member)
+                .where(Optional.ofNullable(orderSearch.getOrderStatus())
+                                .map(order.status::eq)
+                                .orElse(null),
+                        Optional.ofNullable(orderSearch.getMemberName())
+                                .map(order.member.name::like)
+                                .orElse(null)
+                )
+                .limit(1000)
+                .fetch();
+    }
+
+    private BooleanExpression statusEq(OrderStatus orderStatus) {
+        if (orderStatus == null) {
+            return null;
+        }
+        return QOrder.order.status.eq(orderStatus);
     }
 }
