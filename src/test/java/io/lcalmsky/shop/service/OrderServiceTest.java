@@ -7,7 +7,6 @@ import io.lcalmsky.shop.domain.OrderStatus;
 import io.lcalmsky.shop.domain.item.Book;
 import io.lcalmsky.shop.exception.NotEnoughStockException;
 import io.lcalmsky.shop.repository.OrderRepository;
-import io.lcalmsky.shop.repository.OrderService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package io.lcalmsky.shop.repository;
+package io.lcalmsky.shop.service;
 
 import io.lcalmsky.shop.domain.Delivery;
 import io.lcalmsky.shop.domain.Member;
@@ -25,7 +25,7 @@ public class OrderService {
 
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("잘못된 회원 정보"));
         Item item = itemRepository.findOne(itemId);
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
